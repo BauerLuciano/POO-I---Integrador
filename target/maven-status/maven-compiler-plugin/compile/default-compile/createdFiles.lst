@@ -3,8 +3,11 @@ com\eventos\repo\EventoRepository.class
 com\eventos\modelo\Exposicion.class
 com\eventos\modelo\Persona.class
 com\eventos\interfaz\Inscribible.class
+main\java\com\eventos\controlador\EventoController.class
 com\eventos\util\JPAUtil.class
+main\java\com\eventos\App.class
 com\eventos\modelo\Evento.class
+main\java\com\eventos\controlador\MainController.class
 com\eventos\MainTest.class
 com\eventos\modelo\Feria.class
 com\eventos\modelo\CicloCine.class

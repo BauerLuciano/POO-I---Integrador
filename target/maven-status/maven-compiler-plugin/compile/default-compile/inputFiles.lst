@@ -1,5 +1,6 @@
 C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\CicloCine.java
 C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Evento.java
+C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\controlador\MainController.java
 C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Exposicion.java
 C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Feria.java
 C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Persona.java
@@ -11,7 +12,9 @@ C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\evento
 C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\repo\EventoRepositoryImpl.java
 C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\repo\PersonaRepository.java
 C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\enums\TipoEntrada.java
+C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\controlador\EventoController.java
 C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Pelicula.java
 C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Concierto.java
 C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\repo\EventoRepository.java
+C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\App.java
 C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\enums\Modalidad.java
