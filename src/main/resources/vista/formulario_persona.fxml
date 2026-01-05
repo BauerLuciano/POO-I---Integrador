@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" alignment="CENTER" 
+      xmlns="http://javafx.com/javafx/21" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.eventos.controlador.PersonaControlador" 
+      stylesheets="@../estilos.css"> 
+
+    <Label fx:id="lblTitulo" text="Datos de la Persona" styleClass="label-titulo"/>
+
+    <GridPane vgap="15" hgap="15" alignment="CENTER">
+        <Label text="Nombre Completo:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtNombre" promptText="Ej: Lionel Messi" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="300"/>
+
+        <Label text="DNI:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtDni" promptText="Sin puntos" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Email:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtEmail" promptText="lio@mail.com" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Teléfono:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTelefono" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Volver" onAction="#volverALista" styleClass="button, btn-secondary"/>
+        <Button text="Limpiar" onAction="#limpiarFormulario" styleClass="button, btn-secondary"/>
+        <Button text="Guardar" onAction="#guardarPersona" styleClass="button, btn-primary"/>
+    </HBox>
+    
+</VBox>

@@ -1,20 +1,22 @@
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\CicloCine.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Evento.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\controlador\MainController.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Exposicion.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Feria.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Persona.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Taller.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\enums\EstadoEvento.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\MainTest.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\interfaz\Inscribible.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\util\JPAUtil.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\repo\EventoRepositoryImpl.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\repo\PersonaRepository.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\enums\TipoEntrada.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\controlador\EventoController.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Pelicula.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\modelo\Concierto.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\repo\EventoRepository.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\App.java
-C:\Users\Rck\Desktop\Facultad\POO1\Integrador 2026 actu\src\main\java\com\eventos\enums\Modalidad.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\App.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\enums\TipoEntrada.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\enums\Modalidad.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\repo\EventoRepository.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\controlador\ListadoController.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\modelo\Taller.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\repo\EventoRepositoryImpl.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\interfaz\Inscribible.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\controlador\MainController.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\enums\EstadoEvento.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\modelo\Concierto.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\controlador\PersonaControlador.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\modelo\CicloCine.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\modelo\Evento.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\MainTest.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\modelo\Exposicion.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\modelo\Feria.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\repo\PersonaRepository.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\util\JPAUtil.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\controlador\EventoController.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\modelo\Pelicula.java
+D:\Facultad\POO I\POO-I-Integrador\src\main\java\com\eventos\modelo\Persona.java
