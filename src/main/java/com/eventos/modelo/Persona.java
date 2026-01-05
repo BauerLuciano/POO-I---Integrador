@@ -98,10 +98,6 @@ public class Persona {
     // Útil para logs o para ver qué objeto es cuando depurás
     @Override
     public String toString() {
-        return "Persona{" +
-                "id=" + id +
-                ", nombre='" + nombreCompleto + '\'' +
-                ", dni='" + dni + '\'' +
-                '}';
+        return nombreCompleto + " (DNI: " + dni + ")";
     }
 }

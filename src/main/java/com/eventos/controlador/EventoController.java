@@ -1,4 +1,4 @@
-package main.java.com.eventos.controlador;
+package com.eventos.controlador;
 
 import com.eventos.enums.Modalidad;
 import com.eventos.enums.TipoEntrada;
