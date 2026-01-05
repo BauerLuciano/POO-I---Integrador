@@ -1,0 +1,61 @@
+.root {
+    -fx-background-color: #f4f6f8;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+.label-titulo {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 10 0;
+}
+
+.label {
+    -fx-text-fill: #546e7a;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-color: #cfd8dc;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+}
+
+.text-field:focused {
+    -fx-border-color: #2196F3;
+}
+
+.button {
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+}
+
+/* Azul (Crear / Guardar) */
+.btn-primary {
+    -fx-background-color: #2196F3;
+}
+.btn-primary:hover { -fx-background-color: #1976D2; }
+
+/* Gris (Volver / Limpiar) */
+.btn-secondary {
+    -fx-background-color: #95a5a6;
+}
+.btn-secondary:hover { -fx-background-color: #7f8c8d; }
+
+/* Naranja (Editar) */
+.btn-warning {
+    -fx-background-color: #f39c12;
+}
+.btn-warning:hover { -fx-background-color: #e67e22; }
+
+/* Rojo (Eliminar) */
+.btn-danger {
+    -fx-background-color: #e74c3c;
+}
+.btn-danger:hover { -fx-background-color: #c0392b; }

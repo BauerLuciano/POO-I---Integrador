@@ -12,15 +12,17 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // Tu amigo va a crear "main.fxml" en vista/
-        scene = new Scene(loadFXML("main"), 900, 600);
-        stage.setTitle("Sistema Integrador POO1");
+        // CAMBIO TEMPORAL: Apuntamos directo a tu formulario para probarlo
+        // Antes decía: scene = new Scene(loadFXML("main"), 900, 600);
+        scene = new Scene(loadFXML("formulario_persona"), 600, 500); 
+        
+        stage.setTitle("Listado de Personas");
         stage.setScene(scene);
         stage.show();
     }
 
     public static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/vista/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/vista/lista_personas.fxml"));
         return fxmlLoader.load();
     }
 

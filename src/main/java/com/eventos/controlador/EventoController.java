@@ -48,21 +48,7 @@ public class EventoController {
     public void initialize() {
         // 1. Cargar Tipos de Evento
         comboTipo.getItems().addAll("Taller", "Concierto", "Feria");
-        
-        // 2. Cargar Personas (Fito Paez, etc) en los combos
-        // (En un sistema real filtraríamos por rol, acá cargamos todos)
         try {
-            // Nota: Como PersonaRepository no tiene "listarTodos" en el código que te pasé antes,
-            // vamos a usar un truco rápido o agregalo al Repo. 
-            // Asumo que agregás un metodo listarTodos() al PersonaRepository similar al de Evento.
-            // Si no lo tenés, el combo aparecerá vacío.
-            
-            // List<Persona> personas = personaRepo.listarTodos(); 
-            // comboOrganizador.getItems().addAll(personas);
-            // comboInstructor.getItems().addAll(personas);
-            // comboArtista.getItems().addAll(personas);
-            
-            // AGREGADO TEMPORAL: Cargamos a mano a Fito si existe para probar
             Persona p = personaRepo.buscarPorDni("11223344"); 
             if(p != null) {
                 comboOrganizador.getItems().add(p);
