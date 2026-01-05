@@ -1,4 +1,4 @@
-package main.java.com.eventos;
+package com.eventos;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
