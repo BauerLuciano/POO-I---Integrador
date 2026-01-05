@@ -14,7 +14,7 @@ public class Concierto extends Evento {
     private TipoEntrada tipoEntrada;
 
     // Relación Muchos-a-Muchos para los ARTISTAS
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "concierto_artistas",
         joinColumns = @JoinColumn(name = "concierto_id"),

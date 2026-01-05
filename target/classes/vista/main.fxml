@@ -41,5 +41,7 @@
         <Button text="Nuevo Evento" onAction="#abrirNuevoEvento" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;"/>
         
         <Button text="Eliminar Seleccionado" onAction="#eliminarEvento" style="-fx-background-color: #ff4444; -fx-text-fill: white;"/>
+
+        <Button text="Editar Seleccionado" onAction="#editarEvento" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-weight: bold;"/>
     </HBox>
 </VBox>
