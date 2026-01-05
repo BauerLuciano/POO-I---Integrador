@@ -149,4 +149,34 @@ public class MainController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+	@FXML
+    public void editarEvento() {
+        Evento seleccionado = tablaEventos.getSelectionModel().getSelectedItem();
+        if (seleccionado == null) {
+            mostrarAlerta("Atención", "Seleccioná un evento para editar.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/evento.fxml"));
+            Parent root = loader.load();
+
+            // PASO CLAVE: Obtener el controlador y pasarle el evento
+            EventoController controller = loader.getController();
+            controller.initData(seleccionado); 
+
+            Stage stage = new Stage();
+            stage.setTitle("Editar Evento");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+            cargarEventos(); // Refrescar la tabla al volver
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta("Error", "No se pudo abrir la edición: " + e.getMessage());
+        }
+    }
 }

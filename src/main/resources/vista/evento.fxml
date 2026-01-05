@@ -16,7 +16,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label text="Nuevo Evento">
+    <Label text="Formulario de Evento">
         <font>
             <Font name="System Bold" size="20.0" />
         </font>
@@ -26,7 +26,10 @@
         <Label text="Datos Generales" style="-fx-font-weight: bold;"/>
         
         <Label text="Tipo de Evento:" />
-        <ComboBox fx:id="comboTipo" prefWidth="200.0" onAction="#onTipoChange" promptText="Seleccione tipo..." />
+        <ComboBox fx:id="comboTipo" prefWidth="250.0" onAction="#onTipoChange" promptText="Seleccione tipo..." />
+
+        <Label text="Estado del Evento:" />
+        <ComboBox fx:id="comboEstado" prefWidth="250.0" />
         
         <Label text="Nombre del Evento:" />
         <TextField fx:id="txtNombre" promptText="Ej: Curso de Java" />
@@ -43,12 +46,11 @@
         </HBox>
         
         <Label text="Organizador Principal:" />
-        <ComboBox fx:id="comboOrganizador" prefWidth="250.0" promptText="Seleccione una persona..." />
+        <ComboBox fx:id="comboOrganizador" prefWidth="300.0" promptText="Seleccione una persona..." />
     </VBox>
 
     <VBox fx:id="panelTaller" spacing="5.0" managed="false" visible="false" style="-fx-background-color: #e3f2fd; -fx-padding: 10; -fx-background-radius: 5;">
         <Label text="Detalles del Taller" style="-fx-font-weight: bold; -fx-text-fill: #1565c0;"/>
-        
         <HBox spacing="10.0">
             <VBox>
                 <Label text="Cupo Máximo:" />
@@ -59,28 +61,37 @@
                 <ComboBox fx:id="comboModalidad" prefWidth="150.0" />
             </VBox>
         </HBox>
-        
         <Label text="Instructor:" />
-        <ComboBox fx:id="comboInstructor" prefWidth="250.0" />
+        <ComboBox fx:id="comboInstructor" prefWidth="300.0" />
     </VBox>
 
     <VBox fx:id="panelConcierto" spacing="5.0" managed="false" visible="false" style="-fx-background-color: #fff3e0; -fx-padding: 10; -fx-background-radius: 5;">
         <Label text="Detalles del Concierto" style="-fx-font-weight: bold; -fx-text-fill: #e65100;"/>
-        
         <Label text="Tipo de Entrada:" />
         <ComboBox fx:id="comboTipoEntrada" prefWidth="200.0" />
-        
         <Label text="Artista Principal:" />
-        <ComboBox fx:id="comboArtista" prefWidth="250.0" />
+        <ComboBox fx:id="comboArtista" prefWidth="300.0" />
     </VBox>
 
     <VBox fx:id="panelFeria" spacing="5.0" managed="false" visible="false" style="-fx-background-color: #e8f5e9; -fx-padding: 10; -fx-background-radius: 5;">
         <Label text="Detalles de la Feria" style="-fx-font-weight: bold; -fx-text-fill: #2e7d32;"/>
-        
         <Label text="Cantidad de Stands:" />
         <TextField fx:id="txtStands" prefWidth="80.0" />
-        
         <CheckBox fx:id="chkAireLibre" text="Es al aire libre" />
+    </VBox>
+
+    <VBox fx:id="panelExposicion" spacing="5.0" managed="false" visible="false" style="-fx-background-color: #f3e5f5; -fx-padding: 10; -fx-background-radius: 5;">
+        <Label text="Detalles de la Exposición" style="-fx-font-weight: bold; -fx-text-fill: #7b1fa2;"/>
+        <Label text="Tipo de Arte:" />
+        <TextField fx:id="txtTipoArte" promptText="Ej: Pintura, Escultura..." />
+        <Label text="Curador:" />
+        <ComboBox fx:id="comboCurador" prefWidth="300.0" />
+    </VBox>
+
+    <VBox fx:id="panelCicloCine" spacing="5.0" managed="false" visible="false" style="-fx-background-color: #e0f7fa; -fx-padding: 10; -fx-background-radius: 5;">
+        <Label text="Detalles del Ciclo de Cine" style="-fx-font-weight: bold; -fx-text-fill: #0097a7;"/>
+        <CheckBox fx:id="chkHayCharlas" text="Incluye charlas debate" />
+        <Label text="(Las películas se gestionan en otra pantalla)" style="-fx-font-style: italic; -fx-font-size: 11px;" />
     </VBox>
 
     <HBox spacing="10.0" alignment="CENTER_RIGHT">

@@ -33,7 +33,7 @@ public abstract class Evento {
     private EstadoEvento estado;
 
     // RELACIÓN: Un evento tiene varios responsables, y una persona puede organizar varios eventos.
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "evento_organizadores", // Nombre de la tabla intermedia
         joinColumns = @JoinColumn(name = "evento_id"),
