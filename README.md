@@ -8,10 +8,10 @@ Este proyecto implementa una aplicación de escritorio para la gestión integral
 El sistema resuelve la necesidad del municipio de organizar su agenda cultural. Permite administrar el ciclo de vida completo de un evento (desde su planificación hasta su finalización), gestionando inscripciones, cupos y roles específicos (organizadores, artistas, curadores, instructores).
 
 ### Características Principales
-**Gestión de Eventos:** Alta, baja y modificación de distintos tipos de eventos con atributos específicos (ej. stands para ferias, artistas para conciertos).
-**Control de Estados:** Manejo de flujo de estados (En planificación, Confirmado, En ejecución, Finalizado) con validaciones lógicas.
-**Roles y Personas:** Registro de personas y asignación de roles (Organizador, Artista, Curador, Instructor).
-**Inscripciones:** Gestión de asistentes, validación de cupos y control de fechas de inscripción
+* **Gestión de Eventos:** Alta, baja y modificación de distintos tipos de eventos con atributos específicos (ej. stands para ferias, artistas para conciertos).
+* **Control de Estados:** Manejo de flujo de estados (En planificación, Confirmado, En ejecución, Finalizado) con validaciones lógicas.
+* **Roles y Personas:** Registro de personas y asignación de roles (Organizador, Artista, Curador, Instructor).
+* **Inscripciones:** Gestión de asistentes, validación de cupos y control de fechas de inscripción
 
 ##  Tecnologías
 * **Lenguaje:** Java (JDK 17+ recomendado).
