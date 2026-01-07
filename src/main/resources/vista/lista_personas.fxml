@@ -2,24 +2,26 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.cell.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
 
-<VBox spacing="20" alignment="TOP_CENTER" 
-      xmlns="http://javafx.com/javafx/21" 
-      xmlns:fx="http://javafx.com/fxml/1" 
-      fx:controller="com.eventos.controlador.ListadoController" 
-      stylesheets="@../estilos.css"
-      style="-fx-padding: 30;">
+<VBox spacing="15" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eventos.controlador.ListadoController">
+    
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
 
     <HBox alignment="CENTER_LEFT" spacing="10">
-        <Label text="Listado de Personas" styleClass="label-titulo"/>
+        <Label text="Listado de Personas" textFill="#555555">
+             <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        
         <Region HBox.hgrow="ALWAYS"/> 
         
-        <Button text="Editar" onAction="#editarPersona" styleClass="button, btn-warning"/>
-        <Button text="Eliminar" onAction="#eliminarPersona" styleClass="button, btn-danger"/>
-        <Separator orientation="VERTICAL"/>
-        <Button text="+ Nueva Persona" onAction="#irAFormulario" styleClass="button, btn-primary"/>
+        <Button text="+ Nueva Persona" onAction="#irAFormulario" 
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
     </HBox>
 
     <TableView fx:id="tabla" VBox.vgrow="ALWAYS">
@@ -27,6 +29,8 @@
             <TableColumn fx:id="colNombre" text="Nombre Completo" prefWidth="250"/>
             <TableColumn fx:id="colDni" text="DNI" prefWidth="120"/>
             <TableColumn fx:id="colEmail" text="Email" prefWidth="250"/>
+            
+            <TableColumn fx:id="colAcciones" text="Acciones" prefWidth="180"/>
         </columns>
         <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>

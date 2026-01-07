@@ -2,20 +2,18 @@ package com.eventos.controlador;
 
 import com.eventos.modelo.Persona;
 import com.eventos.repo.PersonaRepository;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality; // IMPORTANTE
-import javafx.stage.Stage;    // IMPORTANTE
-import java.io.IOException;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import java.net.URL; // Importante
 import java.util.Optional;
 
 public class ListadoController {
@@ -24,102 +22,119 @@ public class ListadoController {
     @FXML private TableColumn<Persona, String> colNombre;
     @FXML private TableColumn<Persona, String> colDni;
     @FXML private TableColumn<Persona, String> colEmail;
+    @FXML private TableColumn<Persona, Void> colAcciones;
 
     private final PersonaRepository repo = new PersonaRepository();
 
     @FXML
     public void initialize() {
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto"));
-        colDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        cargarDatos();
+        configurarColumnas();
+        configurarColumnaAcciones();
+        cargarPersonas();
     }
 
-    public void cargarDatos() {
-        try {
-            tabla.setItems(FXCollections.observableArrayList(repo.listarTodos()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private void configurarColumnas() {
+        colNombre.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getNombreCompleto()));
+        colDni.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDni()));
+        colEmail.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getEmail()));
+    }
+
+    private void configurarColumnaAcciones() {
+        colAcciones.setCellFactory(param -> new TableCell<>() {
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    Persona persona = getTableView().getItems().get(getIndex());
+                    HBox box = new HBox(5);
+                    box.setStyle("-fx-alignment: CENTER_LEFT;");
+                    
+                    Button btnEditar = new Button("Editar");
+                    btnEditar.setStyle("-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-size: 11px;");
+                    btnEditar.setOnAction(e -> editarPersona(persona));
+
+                    Button btnEliminar = new Button("Eliminar");
+                    btnEliminar.setStyle("-fx-background-color: #ff4444; -fx-text-fill: white; -fx-font-size: 11px; -fx-font-weight: bold;");
+                    btnEliminar.setOnAction(e -> eliminarPersona(persona));
+
+                    box.getChildren().addAll(btnEditar, btnEliminar);
+                    setGraphic(box);
+                }
+            }
+        });
+    }
+
+    private void cargarPersonas() {
+        tabla.setItems(FXCollections.observableArrayList(repo.listarTodos()));
     }
 
     @FXML
     public void irAFormulario(ActionEvent event) {
-        // Pasamos null porque es una persona NUEVA
-        abrirVentanaModal(null); 
+        abrirFormulario(null);
     }
 
-    @FXML
-    public void editarPersona(ActionEvent event) {
-        Persona seleccionada = tabla.getSelectionModel().getSelectedItem();
-        if (seleccionada == null) {
-            mostrarAlerta(Alert.AlertType.WARNING, "Atención", "Seleccioná a alguien de la lista para editar.");
-            return;
-        }
-        // Pasamos la persona seleccionada para EDITAR
-        abrirVentanaModal(seleccionada); 
+    private void editarPersona(Persona persona) {
+        abrirFormulario(persona);
     }
 
-    // --- MÉTODO CORREGIDO: ABRE UNA VENTANA FLOTANTE ---
-    private void abrirVentanaModal(Persona p) {
+    private void abrirFormulario(Persona personaAEditar) {
         try {
-            // IMPORTANTE: Chequeá que el nombre del archivo sea el correcto. 
-            // En tu código dice "formulario_persona.fxml", pero antes usábamos "persona.fxml"
-            // Si te tira error, cambiá el nombre acá abajo:
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/formulario_persona.fxml")); 
+            // --- CHECKEO ANTI-BUGS ---
+            URL url = getClass().getResource("/vista/formulario_persona.fxml");
+            if (url == null) {
+                System.err.println("¡ERROR CRÍTICO! No encuentro el archivo: /vista/formulario_persona.fxml");
+                System.err.println("Por favor verificá la carpeta src/main/resources/vista/");
+                mostrarAlerta("Error de Archivo", "No se encuentra la vista del formulario.");
+                return;
+            }
+            // -------------------------
+
+            FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
 
-            if (p != null) {
-                // Si estamos editando, pasamos los datos
+            if (personaAEditar != null) {
                 PersonaControlador controller = loader.getController();
-                controller.setPersona(p);
+                controller.setPersona(personaAEditar);
             }
 
-            // CREAMOS UNA VENTANA NUEVA (NO reemplazamos la actual)
             Stage stage = new Stage();
-            stage.setTitle(p == null ? "Nueva Persona" : "Editar Persona");
+            stage.setTitle(personaAEditar == null ? "Nueva Persona" : "Editar Persona");
             stage.setScene(new Scene(root));
-            
-            // MODALIDAD: Bloquea la ventana de atrás hasta que cierres esta
             stage.initModality(Modality.APPLICATION_MODAL);
-            
-            // Esperamos a que se cierre para seguir
             stage.showAndWait();
 
-            // AL VOLVER: Refrescamos la tabla automáticamente
-            cargarDatos();
+            cargarPersonas(); 
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo abrir la ventana: " + e.getMessage());
+            mostrarAlerta("Error", "Error al abrir formulario: " + e.getMessage());
         }
     }
 
-    @FXML
-    public void eliminarPersona() {
-        Persona seleccionada = tabla.getSelectionModel().getSelectedItem();
-        if (seleccionada == null) {
-            mostrarAlerta(Alert.AlertType.WARNING, "Atención", "Seleccioná a alguien para eliminar.");
-            return;
-        }
+    private void eliminarPersona(Persona persona) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Eliminar a " + persona.getNombreCompleto() + "?");
 
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-        confirm.setTitle("Confirmar eliminación");
-        confirm.setHeaderText(null);
-        confirm.setContentText("¿Borrar a " + seleccionada.getNombreCompleto() + "?");
-
-        Optional<ButtonType> result = confirm.showAndWait();
+        Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            repo.eliminar(seleccionada.getId());
-            cargarDatos();
+            try {
+                repo.eliminar(persona.getId()); 
+                cargarPersonas();
+            } catch (Exception e) {
+                mostrarAlerta("Error", "No se pudo eliminar: " + e.getMessage());
+            }
         }
     }
 
-    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String msj) {
-        Alert a = new Alert(tipo);
-        a.setTitle(titulo);
-        a.setHeaderText(null);
-        a.setContentText(msj);
-        a.showAndWait();
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 }

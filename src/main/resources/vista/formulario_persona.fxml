@@ -28,7 +28,6 @@
 
     <HBox spacing="15" alignment="CENTER">
         <Button text="Volver" onAction="#volverALista" styleClass="button, btn-secondary"/>
-        <Button text="Limpiar" onAction="#limpiarFormulario" styleClass="button, btn-secondary"/>
         <Button text="Guardar" onAction="#guardarPersona" styleClass="button, btn-primary"/>
     </HBox>
     

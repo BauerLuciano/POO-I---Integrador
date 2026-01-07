@@ -7,19 +7,34 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox spacing="0.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eventos.controlador.MainController">
     
-    <VBox spacing="10" style="-fx-background-color: #2196F3; -fx-padding: 15;">
-        <Label text="Sistema de Gestión Municipal" textFill="WHITE">
+    <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #2196F3; -fx-padding: 10 20 10 20;">
+        
+        <ImageView fitHeight="55.0" preserveRatio="true" pickOnBounds="true">
+            <image>
+                <Image url="@/img/logo_apostoles.jpg" />
+            </image>
+        </ImageView>
+
+        <Label text="Municipalidad de Apóstoles" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="24.0" />
+                <Font name="System Bold" size="22.0" />
             </font>
         </Label>
-    </VBox>
+        
+        <Region HBox.hgrow="ALWAYS" />
+        
+        <Button text="+ Nuevo Evento" onAction="#abrirNuevoEvento" 
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);"/>
+    </HBox>
 
     <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
         
@@ -28,6 +43,8 @@
                 <padding>
                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                 </padding>
+
+                <Label text="Listado de Eventos Activos" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #555555;"/>
                 
                 <TableView fx:id="tablaEventos" VBox.vgrow="ALWAYS">
                     <columns>
@@ -36,20 +53,14 @@
                         <TableColumn fx:id="colNombre" text="Nombre" prefWidth="250.0" />
                         <TableColumn fx:id="colFecha" text="Fecha Inicio" prefWidth="150.0" />
                         <TableColumn fx:id="colEstado" text="Estado" prefWidth="120.0" />
+                        
+                        <TableColumn fx:id="colAcciones" text="Acciones Disponibles" prefWidth="280.0" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
                 </TableView>
 
-                <HBox spacing="10.0" alignment="CENTER_RIGHT">
-                    <Button text="Refrescar Lista" onAction="#cargarEventos"/>
-                    <Button text="Inscribir Persona" onAction="#abrirInscripcion" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                    <Button text="Gestionar Películas" onAction="#abrirPeliculas" style="-fx-background-color: #673ab7; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                    <Button text="Editar Seleccionado" onAction="#editarEvento" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                    <Button text="Nuevo Evento" onAction="#abrirNuevoEvento" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                    <Button text="Eliminar Seleccionado" onAction="#eliminarEvento" style="-fx-background-color: #ff4444; -fx-text-fill: white;"/>
-                </HBox>
             </VBox>
         </Tab>
 
