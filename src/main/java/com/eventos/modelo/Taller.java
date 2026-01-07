@@ -21,7 +21,6 @@ public class Taller extends Evento implements Inscribible {
     @JoinColumn(name = "instructor_id")
     private Persona instructor;
 
-    // Relación Muchos a Muchos: Un taller tiene muchas personas inscriptas
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "taller_inscripciones",
@@ -43,22 +42,30 @@ public class Taller extends Evento implements Inscribible {
         this.modalidad = mod;
     }
 
-    // --- LÓGICA DE INSCRIPCIÓN (Cumpliendo contrato con Inscribible) ---
     
     @Override
     public boolean hayCupo() {
-        // Devuelve TRUE si la cantidad de inscriptos es menor al tope
         return inscripciones.size() < cupoMaximo;
     }
 
-    @Override
+  @Override
     public void inscribir(Persona persona) {
-        if (!hayCupo()) { // Reutilizamos el método de arriba
-            throw new RuntimeException("No hay cupo disponible en este taller.");
+        
+        // 1. VALIDACIÓN DE ESTADO
+        if (this.getEstado() != com.eventos.enums.EstadoEvento.CONFIRMADO) {
+            throw new RuntimeException("Solo se pueden inscribir a eventos CONFIRMADOS.\nEstado actual: " + this.getEstado());
         }
+
+        // 2. VALIDACIÓN DE CUPO
+        if (!hayCupo()) { 
+            throw new RuntimeException("No hay cupo disponible.");
+        }
+
+        // 3. VALIDACIÓN DE DUPLICADOS 
         if (inscripciones.contains(persona)) {
-            throw new RuntimeException("Esta persona ya está inscripta.");
+            throw new RuntimeException("Esta persona YA está inscripta.");
         }
+
         inscripciones.add(persona);
     }
 

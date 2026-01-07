@@ -14,7 +14,6 @@ public class Persona {
     @Column(nullable = false)
     private String nombreCompleto;
 
-    // El DNI es obligatorio y único en la base de datos
     @Column(unique = true, nullable = false)
     private String dni;
 
@@ -22,9 +21,6 @@ public class Persona {
     
     private String telefono;
 
-    // --- CONSTRUCTORES ---
-
-    // Constructor vacío: OBLIGATORIO para que JPA pueda crear el objeto
     public Persona() {
     }
 
@@ -35,8 +31,6 @@ public class Persona {
         this.email = email;
         this.telefono = telefono;
     }
-
-    // --- GETTERS Y SETTERS (Todos los campos) ---
 
     public Long getId() {
         return id;
@@ -78,24 +72,20 @@ public class Persona {
         this.telefono = telefono;
     }
 
-    // Definimos que dos personas son iguales si tienen el mismo DNI
-
-    @Override
+   @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Persona persona = (Persona) o;
-        return Objects.equals(dni, persona.dni);
+        if (id != null && persona.id != null) return id.equals(persona.id);
+        return dni != null && dni.equals(persona.dni);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dni);
+        return dni != null ? dni.hashCode() : 0;
     }
 
-    // --- REPRESENTACIÓN EN TEXTO ---
-    
-    // Útil para logs o para ver qué objeto es cuando depurás
     @Override
     public String toString() {
         return nombreCompleto + " (DNI: " + dni + ")";

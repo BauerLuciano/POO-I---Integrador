@@ -48,7 +48,7 @@ public class EventoController {
     
     // Feria
     @FXML private TextField txtStands;
-    @FXML private CheckBox chkAireLibre;
+    @FXML private ComboBox<String> comboUbicacionFeria;
     
     // Exposicion
     @FXML private TextField txtTipoArte;
@@ -67,6 +67,7 @@ public class EventoController {
     public void initialize() {
         // 1. Cargar Combos
         comboTipo.getItems().addAll("Taller", "Concierto", "Feria", "Exposicion", "CicloCine");
+        comboUbicacionFeria.getItems().addAll("Es al aire libre", "Techado");
         comboModalidad.getItems().addAll(Modalidad.values());
         comboTipoEntrada.getItems().addAll(TipoEntrada.values());
         comboEstado.getItems().addAll(EstadoEvento.values());
@@ -152,7 +153,11 @@ public class EventoController {
             comboTipo.setValue("Feria");
             Feria f = (Feria) evento;
             txtStands.setText(String.valueOf(f.getCantidadStands()));
-            chkAireLibre.setSelected(f.isAlAireLibre());
+            if (f.isAlAireLibre()) {
+                comboUbicacionFeria.setValue("Es al aire libre");
+            } else {
+                comboUbicacionFeria.setValue("Techado");
+            }
             mostrarPanel(panelFeria);
         }
         else if (evento instanceof Exposicion) {
@@ -234,7 +239,9 @@ public class EventoController {
             } else if (eventoFinal instanceof Feria) {
                 Feria f = (Feria) eventoFinal;
                 f.setCantidadStands(Integer.parseInt(txtStands.getText()));
-                f.setAlAireLibre(chkAireLibre.isSelected());
+                String ubicacion = comboUbicacionFeria.getValue();
+                if (ubicacion == null) throw new RuntimeException("Seleccione la ubicación de la feria");
+                f.setAlAireLibre("Es al aire libre".equals(ubicacion));
             } else if (eventoFinal instanceof Exposicion) {
                 Exposicion e = (Exposicion) eventoFinal;
                 e.setTipoArte(txtTipoArte.getText());

@@ -79,9 +79,12 @@
 
     <VBox fx:id="panelFeria" spacing="5.0" managed="false" visible="false" style="-fx-background-color: #e8f5e9; -fx-padding: 10; -fx-background-radius: 5;">
         <Label text="Detalles de la Feria" style="-fx-font-weight: bold; -fx-text-fill: #2e7d32;"/>
+        
         <Label text="Cantidad de Stands:" />
         <TextField fx:id="txtStands" prefWidth="80.0" />
-        <CheckBox fx:id="chkAireLibre" text="Es al aire libre" />
+        
+        <Label text="Ubicación:" />
+        <ComboBox fx:id="comboUbicacionFeria" prefWidth="200.0" promptText="Seleccione ubicación..."/>
     </VBox>
 
     <VBox fx:id="panelExposicion" spacing="5.0" managed="false" visible="false" style="-fx-background-color: #f3e5f5; -fx-padding: 10; -fx-background-radius: 5;">

@@ -5,79 +5,83 @@ import com.eventos.modelo.Taller;
 import com.eventos.repo.EventoRepository;
 import com.eventos.repo.EventoRepositoryImpl;
 import com.eventos.repo.PersonaRepository;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class InscripcionController {
 
-    @FXML private Label lblNombreTaller;
+    @FXML private Label lblEvento;
     @FXML private Label lblCupo;
     @FXML private ComboBox<Persona> comboPersonas;
-
-    private EventoRepository eventoRepo = new EventoRepositoryImpl();
-    private PersonaRepository personaRepo = new PersonaRepository();
     
-    // Variable para guardar el taller que estamos editando
+    // TABLA
+    @FXML private TableView<Persona> tablaInscriptos;
+    @FXML private TableColumn<Persona, String> colNombre;
+    @FXML private TableColumn<Persona, String> colDni;
+    @FXML private TableColumn<Persona, String> colEmail;
+
+    private EventoRepository eventRepo = new EventoRepositoryImpl();
+    private PersonaRepository personaRepo = new PersonaRepository();
     private Taller tallerActual;
 
-    @FXML
-    public void initialize() {
+    public void initData(Taller taller) {
+        this.tallerActual = taller;
+        lblEvento.setText("Inscripción: " + taller.getNombre());
+        actualizarInfo();
         cargarPersonas();
+        
+        // Configurar columnas de la tabla
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto"));
+        colDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        
+        // Llenar tabla con los que YA estaban inscriptos
+        refrescarTabla();
     }
 
     private void cargarPersonas() {
         try {
-            // Reusamos el método listarTodos que agregamos antes
-            comboPersonas.getItems().addAll(personaRepo.listarTodos());
-        } catch (Exception e) {
-            e.printStackTrace();
+            comboPersonas.getItems().setAll(personaRepo.listarTodos());
+        } catch (Exception e) { e.printStackTrace(); }
+    }
+
+    private void actualizarInfo() {
+        int ocupados = tallerActual.getInscripciones().size();
+        int total = tallerActual.getCupoMaximo();
+        lblCupo.setText("Cupo: " + ocupados + " / " + total + " ocupados");
+    }
+    
+    private void refrescarTabla() {
+        if (tallerActual != null) {
+            tablaInscriptos.setItems(FXCollections.observableArrayList(tallerActual.getInscripciones()));
         }
     }
 
-    // --- ESTE ES EL MÉTODO CLAVE ---
-    // La ventana principal llama a esto para pasarnos el Taller seleccionado
-    public void initData(Taller taller) {
-        this.tallerActual = taller;
-        lblNombreTaller.setText(taller.getNombre());
-        actualizarCupoVisual();
-    }
-
-    private void actualizarCupoVisual() {
-        // Calculamos cupo restante (Maximo - Inscriptos actuales)
-        // Nota: tallerActual.getInscripciones() podría ser null si es nuevo, manejar con cuidado
-        int inscriptos = tallerActual.getInscripciones().size();
-        int disponibles = tallerActual.getCupoMaximo() - inscriptos;
-        lblCupo.setText("Cupo disponible: " + disponibles + " / " + tallerActual.getCupoMaximo());
-    }
-
     @FXML
-    public void confirmarInscripcion() {
+    public void inscribir() {
+        Persona p = comboPersonas.getValue();
+        if (p == null) {
+            mostrarAlerta("Error", "Seleccioná una persona primero.");
+            return;
+        }
+
         try {
-            Persona participante = comboPersonas.getValue();
-            if (participante == null) {
-                mostrarAlerta("Error", "Debe seleccionar una persona.");
-                return;
-            }
-
-            // 1. Lógica de negocio (Polimorfismo en acción)
-            // El método inscribir ya valida si hay cupo dentro de la clase Taller
-            tallerActual.inscribir(participante);
-
-            // 2. Guardar cambios en la BD
-            eventoRepo.actualizar(tallerActual);
-
-            // 3. Feedback
+            // Esto ahora valida Estado, Cupo y Duplicados
+            tallerActual.inscribir(p);
+            
+            // Guardamos en BD
+            eventRepo.actualizar(tallerActual);
+            
             mostrarAlerta("Éxito", "Inscripción realizada correctamente.");
             
-            // 4. Cerrar ventana
-            Stage stage = (Stage) lblNombreTaller.getScene().getWindow();
-            stage.close();
-
+            // Refrescamos la pantalla
+            actualizarInfo();
+            refrescarTabla();
+            
         } catch (Exception e) {
-            mostrarAlerta("Error", "No se pudo inscribir: " + e.getMessage());
+            mostrarAlerta("No se pudo inscribir", e.getMessage());
         }
     }
 

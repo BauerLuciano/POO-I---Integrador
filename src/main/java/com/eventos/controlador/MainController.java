@@ -96,7 +96,7 @@ public class MainController {
 
             Stage stage = new Stage();
             stage.setTitle("Alta de Nuevo Evento");
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(root, 400, 600));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
 
@@ -127,7 +127,7 @@ public class MainController {
 
             Stage stage = new Stage();
             stage.setTitle("Editar Evento");
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(root, 400, 600));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
 
