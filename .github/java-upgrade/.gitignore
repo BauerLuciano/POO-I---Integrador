@@ -1,0 +1,31 @@
+# Archivos compilados de Java
+*.class
+
+# Directorio de salida de Maven
+target/
+
+# Archivos de log
+*.log
+
+# Archivos temporales
+*.tmp
+*.swp
+*.swo
+
+# Configuración de IDEs
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA
+*.iml
+.idea/
+out/
+
+# VS Code
+.vscode/
+
+# MacOS y Windows
+.DS_Store
+Thumbs.db
