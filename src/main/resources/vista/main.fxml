@@ -16,36 +16,44 @@
 
 <VBox spacing="0.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eventos.controlador.MainController">
     
-    <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #2196F3; -fx-padding: 10 20 10 20;">
+    <HBox alignment="CENTER_LEFT" spacing="15.0" 
+          style="-fx-background-image: url('/img/header.png'); -fx-background-size: cover; -fx-background-position: center center; -fx-padding: 10 20 10 20;">
         
         <ImageView fitHeight="55.0" preserveRatio="true" pickOnBounds="true">
             <image>
-                <Image url="@/img/logo_apostoles.jpg" />
+                <Image url="@/img/logo_apostoles.png" />
             </image>
+            <effect>
+                <javafx.scene.effect.DropShadow color="rgba(255, 255, 255, 0)" radius="10" />
+            </effect>
         </ImageView>
 
         <Label text="Municipalidad de Apóstoles" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="22.0" />
             </font>
+            <effect>
+                <javafx.scene.effect.DropShadow color="BLACK" radius="5.0" spread="0.6" offsetX="2.0" offsetY="2.0"/>
+            </effect>
         </Label>
         
         <Region HBox.hgrow="ALWAYS" />
         
-        <Button text="+ Nuevo Evento" onAction="#abrirNuevoEvento" 
-                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);"/>
     </HBox>
 
-    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-        
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" >
         <Tab text="Gestión de Eventos">
             <VBox spacing="15.0">
                 <padding>
                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                 </padding>
-
-                <Label text="Listado de Eventos Activos" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #555555;"/>
+                <HBox alignment="CENTER_LEFT" spacing="10">
                 
+                <Label text="Listado de Eventos Activos" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #000000ff;"/>
+                <Region HBox.hgrow="ALWAYS"/> 
+                <Button text="+ Nuevo Evento" onAction="#abrirNuevoEvento" 
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);"/>
+                </HBox>
                 <TableView fx:id="tablaEventos" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colId" text="ID" prefWidth="50.0" />
@@ -60,6 +68,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
                 </TableView>
+
 
             </VBox>
         </Tab>
